@@ -2099,7 +2099,7 @@ components:
           type: string
           example: "1866.51"
         to:
-          nullable: true,
+          nullable: true
           $ref: "#/components/schemas/AddressParam"
         transaction_burnt_fee:
           type: string
@@ -2125,6 +2125,7 @@ components:
         from:
           $ref: "#/components/schemas/AddressParam"
         token_transfers:
+          nullable: true
           type: array
           items:
             $ref: "#/components/schemas/TokenTransfer"
@@ -2144,7 +2145,7 @@ components:
           type: string
           example: "41309"
         created_contract:
-          nullable: true,
+          nullable: true
           $ref: "#/components/schemas/AddressParam"
         position:
           type: integer
