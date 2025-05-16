@@ -12,40 +12,33 @@
  * Do not edit the class manually.
  */
 
+
 /**
  *  - SERVICE_UNKNOWN: Used only by the Watch method.
  * @export
  */
 export const HealthCheckResponseServingStatus = {
-    Unknown: "UNKNOWN",
-    Serving: "SERVING",
-    NotServing: "NOT_SERVING",
-    ServiceUnknown: "SERVICE_UNKNOWN",
+    Unknown: 'UNKNOWN',
+    Serving: 'SERVING',
+    NotServing: 'NOT_SERVING',
+    ServiceUnknown: 'SERVICE_UNKNOWN'
 } as const;
-export type HealthCheckResponseServingStatus =
-    (typeof HealthCheckResponseServingStatus)[keyof typeof HealthCheckResponseServingStatus];
+export type HealthCheckResponseServingStatus = typeof HealthCheckResponseServingStatus[keyof typeof HealthCheckResponseServingStatus];
 
-export function instanceOfHealthCheckResponseServingStatus(
-    value: any
-): boolean {
+
+export function instanceOfHealthCheckResponseServingStatus(value: any): boolean {
     return Object.values(HealthCheckResponseServingStatus).includes(value);
 }
 
-export function HealthCheckResponseServingStatusFromJSON(
-    json: any
-): HealthCheckResponseServingStatus {
+export function HealthCheckResponseServingStatusFromJSON(json: any): HealthCheckResponseServingStatus {
     return HealthCheckResponseServingStatusFromJSONTyped(json, false);
 }
 
-export function HealthCheckResponseServingStatusFromJSONTyped(
-    json: any,
-    ignoreDiscriminator: boolean
-): HealthCheckResponseServingStatus {
+export function HealthCheckResponseServingStatusFromJSONTyped(json: any, ignoreDiscriminator: boolean): HealthCheckResponseServingStatus {
     return json as HealthCheckResponseServingStatus;
 }
 
-export function HealthCheckResponseServingStatusToJSON(
-    value?: HealthCheckResponseServingStatus | null
-): any {
+export function HealthCheckResponseServingStatusToJSON(value?: HealthCheckResponseServingStatus | null): any {
     return value as any;
 }
+

@@ -2099,7 +2099,7 @@ components:
           type: string
           example: "1866.51"
         to:
-          nullable: true,
+          nullable: true
           $ref: "#/components/schemas/AddressParam"
         transaction_burnt_fee:
           type: string
@@ -2125,6 +2125,7 @@ components:
         from:
           $ref: "#/components/schemas/AddressParam"
         token_transfers:
+          nullable: true
           type: array
           items:
             $ref: "#/components/schemas/TokenTransfer"
@@ -2144,7 +2145,7 @@ components:
           type: string
           example: "41309"
         created_contract:
-          nullable: true,
+          nullable: true
           $ref: "#/components/schemas/AddressParam"
         position:
           type: integer
@@ -3419,6 +3420,8 @@ components:
         - market_cap
         - network_utilization_percentage
       properties:
+        coin_price_change_percentage:
+          type: number
         total_blocks:
           type: string
           example: "508700"
@@ -3444,8 +3447,7 @@ components:
           type: string
           example: "49063630"
         gas_prices:
-          type: object
-          example: { "average": 10.0, "fast": 10.0, "slow": 10.0 } # gas prices in gwei
+          $ref: "#/components/schemas/GasPrice"
         static_gas_price:
           type: string
           example: "10.1"
@@ -3455,6 +3457,15 @@ components:
         network_utilization_percentage:
           type: number
           example: 40.2142
+    
+    GasPrice:
+      properties:
+        average:
+          type: number
+        fast:
+          type: number
+        slow:
+          type: number
 
     MarketChartItem:
       required:

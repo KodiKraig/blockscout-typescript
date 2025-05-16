@@ -13,12 +13,25 @@
  */
 
 import { mapValues } from '../runtime';
+import type { GasPrice } from './GasPrice';
+import {
+    GasPriceFromJSON,
+    GasPriceFromJSONTyped,
+    GasPriceToJSON,
+} from './GasPrice';
+
 /**
  * 
  * @export
  * @interface StatsResponse
  */
 export interface StatsResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof StatsResponse
+     */
+    coinPriceChangePercentage?: number;
     /**
      * 
      * @type {string}
@@ -69,10 +82,10 @@ export interface StatsResponse {
     gasUsedToday: string;
     /**
      * 
-     * @type {object}
+     * @type {GasPrice}
      * @memberof StatsResponse
      */
-    gasPrices: object;
+    gasPrices: GasPrice;
     /**
      * 
      * @type {string}
@@ -122,6 +135,7 @@ export function StatsResponseFromJSONTyped(json: any, ignoreDiscriminator: boole
     }
     return {
         
+        'coinPriceChangePercentage': json['coin_price_change_percentage'] == null ? undefined : json['coin_price_change_percentage'],
         'totalBlocks': json['total_blocks'],
         'totalAddresses': json['total_addresses'],
         'totalTransactions': json['total_transactions'],
@@ -130,7 +144,7 @@ export function StatsResponseFromJSONTyped(json: any, ignoreDiscriminator: boole
         'totalGasUsed': json['total_gas_used'],
         'transactionsToday': json['transactions_today'],
         'gasUsedToday': json['gas_used_today'],
-        'gasPrices': json['gas_prices'],
+        'gasPrices': GasPriceFromJSON(json['gas_prices']),
         'staticGasPrice': json['static_gas_price'],
         'marketCap': json['market_cap'],
         'networkUtilizationPercentage': json['network_utilization_percentage'],
@@ -143,6 +157,7 @@ export function StatsResponseToJSON(value?: StatsResponse | null): any {
     }
     return {
         
+        'coin_price_change_percentage': value['coinPriceChangePercentage'],
         'total_blocks': value['totalBlocks'],
         'total_addresses': value['totalAddresses'],
         'total_transactions': value['totalTransactions'],
@@ -151,7 +166,7 @@ export function StatsResponseToJSON(value?: StatsResponse | null): any {
         'total_gas_used': value['totalGasUsed'],
         'transactions_today': value['transactionsToday'],
         'gas_used_today': value['gasUsedToday'],
-        'gas_prices': value['gasPrices'],
+        'gas_prices': GasPriceToJSON(value['gasPrices']),
         'static_gas_price': value['staticGasPrice'],
         'market_cap': value['marketCap'],
         'network_utilization_percentage': value['networkUtilizationPercentage'],
